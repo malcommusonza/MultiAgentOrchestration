@@ -5,6 +5,11 @@ exec > >(tee /var/log/openclaw-install.log) 2>&1
 echo "[OpenClaw] Installing via official script: $(date)"
 
 # -----------------------------------------------------------------------------
+# Fix: Set HOME environment variable (required by installer)
+# -----------------------------------------------------------------------------
+export HOME=/home/ec2-user
+
+# -----------------------------------------------------------------------------
 # Run the official installer non‑interactively
 # -----------------------------------------------------------------------------
 curl -fsSL https://openclaw.ai/install.sh | bash -s -- --no-prompt --no-onboard
